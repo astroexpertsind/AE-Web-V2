@@ -126,12 +126,30 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage, openA
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden bg-black/40 backdrop-blur-sm">
-          <div className="fixed inset-y-0 right-0 w-full max-w-xs bg-white border-l border-zinc-200 p-6 flex flex-col justify-between shadow-2xl pt-24 animate-in slide-in-from-right duration-200">
-            <div className="space-y-4">
-              <div className="text-xs uppercase tracking-widest text-zinc-400 font-semibold mb-2">
-                Navigation
+          <div className="fixed inset-y-0 right-0 w-full max-w-xs bg-white border-l border-zinc-200 p-6 flex flex-col justify-between shadow-2xl animate-in slide-in-from-right duration-200 overflow-y-auto">
+            <div className="space-y-6">
+              {/* Mobile Drawer Header with Logo and Close */}
+              <div className="flex items-center justify-between pb-4 border-b border-zinc-100">
+                <button
+                  onClick={() => handleNavClick('home')}
+                  className="text-left focus:outline-none"
+                >
+                  <AstroExpertsLogo size="sm" variant="light-bg" />
+                </button>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-1.5 rounded-lg text-zinc-500 hover:text-black hover:bg-zinc-100"
+                  aria-label="Close navigation menu"
+                >
+                  <X className="w-5 h-5" />
+                </button>
               </div>
-              <div className="flex flex-col space-y-1">
+
+              <div>
+                <div className="text-xs uppercase tracking-widest text-zinc-400 font-semibold mb-3">
+                  Navigation
+                </div>
+                <div className="flex flex-col space-y-1">
                 {navLinks.map((link) => (
                   <button
                     key={link.id}
@@ -157,8 +175,9 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, setActivePage, openA
                 </button>
               </div>
             </div>
+          </div>
 
-            <div className="space-y-3 pt-6 border-t border-zinc-200">
+          <div className="space-y-3 pt-6 border-t border-zinc-200">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
